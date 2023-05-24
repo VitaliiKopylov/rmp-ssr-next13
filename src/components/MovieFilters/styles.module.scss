@@ -1,0 +1,26 @@
+.movies {
+  &Filters {
+    border-bottom: 2px solid #424242;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &Results {
+    padding: 24px 0;
+    font-family: 'Montserrat';
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 24px;
+    color: var(--white);
+  }
+  &Empty {
+    text-align: center;
+    padding-top: 40px;
+  }
+  &Cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 56px 52px;
+    margin-bottom: 72px;
+  }
+}
