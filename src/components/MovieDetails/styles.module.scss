@@ -13,6 +13,17 @@
     right: 15px;
     background: none;
     border: none;
+    &::before {
+      content: '';
+      position: absolute;
+      top: -30px;
+      left: -300px;
+      bottom: -10px;
+      background: #232323;
+      width: 350px;
+      z-index: -1;
+      pointer-events: none;
+    }
   }
   &__image {
     grid-column: 1 / span 1;

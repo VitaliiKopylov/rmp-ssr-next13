@@ -3,10 +3,8 @@ import MovieList from '@/components/MovieList';
 import AppHero from '@/components/AppHero/AppHero';
 
 export default function Page({
-  children,
   searchParams,
 }: {
-  children: React.ReactNode;
   searchParams: { [key: string]: string | string[] | undefined };
 }) {
   return (

@@ -1,12 +1,9 @@
 'use client';
 
-import { ImgHTMLAttributes, useState } from 'react';
+import { useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 
 import fallbackSrc from '@/assets/images/no_poster.jpg';
-
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-// interface IImageProps extends ImgHTMLAttributes<HTMLImageElement> {}
 
 interface IBaseImageProps {
   src: string | StaticImageData;

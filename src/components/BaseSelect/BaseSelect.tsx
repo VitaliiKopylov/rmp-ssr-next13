@@ -1,3 +1,5 @@
+'use client';
+
 import { VscTriangleDown } from 'react-icons/vsc';
 import { IconContext } from 'react-icons';
 import clsx from 'clsx';

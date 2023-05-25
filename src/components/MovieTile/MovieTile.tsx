@@ -30,7 +30,6 @@ MovieTileProps) => {
   const [open, setOpen] = useState(false);
   const searchParams = useSearchParams();
 
-  console.log(searchParams.toString());
   const searchParamsURL =
     searchParams.toString() !== '' ? `?${searchParams.toString()}` : '';
 

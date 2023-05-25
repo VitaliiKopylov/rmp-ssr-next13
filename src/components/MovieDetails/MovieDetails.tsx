@@ -1,41 +1,22 @@
+'use client';
+
 import clsx from 'clsx';
 import { VscSearch } from 'react-icons/vsc';
 import { IconContext } from 'react-icons';
-import {
-  useParams,
-  Link,
-  useSearchParams,
-  useNavigate,
-} from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import Link from 'next/link';
 
 import BaseImage from '@components/BaseImage';
 import { IMovieDetails } from '../../types';
 import { convertMinutesToHoursAndMinutes } from '../../utils/duration';
-import { API_URL } from '../../constants';
 
 import styles from './styles.module.scss';
 
-const MovieDetails = () => {
-  const { movieId } = useParams();
-  const [movie, setMovie] = useState<IMovieDetails>();
-  const [searchParams] = useSearchParams();
-  const navigate = useNavigate();
+interface IPageProps {
+  movie: IMovieDetails;
+  searchParams: { [key: string]: string | string[] | undefined };
+}
 
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const result = await fetch(`${API_URL}/movies/${movieId}`);
-        const data = await result.json();
-        setMovie(data);
-      } catch (err) {
-        navigate('/not-found');
-      }
-    };
-    fetchData();
-  }, [movieId, navigate]);
-
+const MovieDetails = ({ movie, searchParams }: IPageProps) => {
   const {
     poster_path = '',
     title = '',
@@ -46,6 +27,9 @@ const MovieDetails = () => {
     overview = '',
   } = movie || {};
 
+  // @ts-ignore
+  const searchParamsURL = new URLSearchParams(searchParams);
+
   return (
     <article className={styles.movieDetails}>
       Movie details
@@ -55,10 +39,7 @@ const MovieDetails = () => {
         >
           <Link
             className={styles.movieDetails__closeBtn}
-            to={{
-              pathname: '/',
-              search: searchParams.toString(),
-            }}
+            href={`/?${searchParamsURL}`}
           >
             <VscSearch />
           </Link>
@@ -67,6 +48,8 @@ const MovieDetails = () => {
           className={styles.movieDetails__image}
           src={poster_path}
           alt={title}
+          height={100}
+          width={390}
         />
         <div className={styles.movieDetails__info}>
           <header className={styles.movieDetails__header}>
@@ -85,7 +68,6 @@ const MovieDetails = () => {
           <div className={styles.movieDetails__description}>{overview}</div>
         </div>
       </div>
-      <Outlet context={movie} />
     </article>
   );
 };
